@@ -12,12 +12,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div>
           <QueryClientProvider client={queryClient}>
             {children}
             <ReactQueryDevtools initialIsOpen={false} position="bottom-right"/>
           </QueryClientProvider>
-        </div>
       </body>
     </html>
   )

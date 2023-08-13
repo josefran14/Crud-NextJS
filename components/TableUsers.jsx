@@ -4,8 +4,8 @@ import { ActionsButtons } from "./ActionsButtons";
 export const TableUsers = ({data}) => {
   return (
     <>
-      <TableContainer sx={{ width: "100%", marginTop: "10px" }}>
-        <Table >
+      <TableContainer sx={{ width: "100%", marginTop: "12px" }}>
+        <Table size="small">
           <TableHead sx={{ width: "80%" }}>
             <TableRow>
               <TableCell sx={{ color: "white" }}>N#</TableCell>
@@ -15,13 +15,13 @@ export const TableUsers = ({data}) => {
               <TableCell sx={{ color: "white" }} align="center">
                 Email
               </TableCell>
-              <TableCell sx={{ color: "white" }} align="right">
+              <TableCell sx={{ color: "white" }} align="center">
                 Gender
               </TableCell>
-              <TableCell sx={{ color: "white" }} align="right">
+              <TableCell sx={{ color: "white" }} align="center">
                 Username
               </TableCell>
-              <TableCell sx={{ color: "white" }} align="right">
+              <TableCell sx={{ color: "white" }} align="center">
                 Website
               </TableCell>
               <TableCell sx={{ color: "white" }} align="center">
@@ -43,16 +43,16 @@ export const TableUsers = ({data}) => {
                   <TableCell sx={{ color: "white" }} align="center">
                     {email}
                   </TableCell>
-                  <TableCell sx={{ color: "white" }} align="right">
+                  <TableCell sx={{ color: "white" }} align="center">
                     {city}
                   </TableCell>
-                  <TableCell sx={{ color: "white" }} align="right">
+                  <TableCell sx={{ color: "white" }} align="center">
                     {username}
                   </TableCell>
-                  <TableCell sx={{ color: "white" }} align="right">
+                  <TableCell sx={{ color: "white" }} align="center">
                     {website}
                   </TableCell>
-                  <TableCell sx={{ color: "white" }} align="right">
+                  <TableCell sx={{ color: "white" }} align="center">
                     <ActionsButtons/>
                   </TableCell>
                 </TableRow>
