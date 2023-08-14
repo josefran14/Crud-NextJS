@@ -53,7 +53,7 @@ export const TableUsers = ({data}) => {
                     {website}
                   </TableCell>
                   <TableCell sx={{ color: "white" }} align="center">
-                    <ActionsButtons/>
+                    <ActionsButtons id={id}/>
                   </TableCell>
                 </TableRow>
               )
