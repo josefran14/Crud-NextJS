@@ -4,8 +4,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import { useRouter } from "next/navigation";
+import { useDeleteUser } from "@/hooks/useDeleteUser";
 
 export const ActionsButtons = ({id}) => {
+
+  const {mutate: deleteUser} = useDeleteUser()
+
+  const handleDelete = () =>{
+    deleteUser(id)
+  }
 
   const router = useRouter()
 
@@ -15,7 +22,7 @@ export const ActionsButtons = ({id}) => {
 
   return (
     <Box sx={{display: "flex", justifyContent: "center", gap: "14px"}}>
-        <Button variant="contained" color="error" sx={{borderRadius: "12px"}}>
+        <Button onClick={handleDelete} variant="contained" color="error" sx={{borderRadius: "12px"}}>
             <DeleteIcon/>
         </Button>
         <Button onClick={handleNavigateToPageOfDetails} variant="contained" color="secondary" sx={{borderRadius: "12px"}}>
