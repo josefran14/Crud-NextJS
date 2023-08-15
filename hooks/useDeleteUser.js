@@ -11,6 +11,9 @@ export const useDeleteUser = () => {
     return useMutation(deleteUser, {
         onSuccess: () =>{
             queryClient.invalidateQueries("users")
+        },
+        onError: (error) =>{
+            console.log(error)
         }
     })
 }

@@ -1,27 +1,19 @@
 "use client"
-import { useAddUser } from "@/hooks/useAddUser";
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export const Form = () => {
+export const Form = ({title, titleButton, initialValue, onSubmit}) => {
 
     const router = useRouter()
 
     const [user, setUser] = useState({
-        name: "",
-        email: "",
-        city: "",
-        username: "",
-        website: ""
-    })
-
-    const {mutate: addUser} = useAddUser()
-
-    const handleAddUser = () =>{
-        addUser(user)
-        router.push("/")
-    }
+      name: initialValue.name || "",
+      city: initialValue.city || "",
+      email: initialValue.email || "",
+      username: initialValue.username || "",
+      website: initialValue.website || ""
+  })
 
     const handleChange = (e) =>{
         const {name, value} = e.target
@@ -30,6 +22,11 @@ export const Form = () => {
             [name] : value
         })
     }
+
+    const handleUser = () =>{
+      onSubmit(user)
+      router.push("/")
+}
 
   return (
     <Grid
@@ -50,7 +47,7 @@ export const Form = () => {
         }}
       >
         <Typography variant="h5" sx={{ textAlign: "center", fontFamily: "Open Sans" }}>
-          Agregar usuario
+          {title}
         </Typography>
         <Grid container>
           <Grid item sx={{ mt: 2, width: "100%" }}>
@@ -124,7 +121,7 @@ export const Form = () => {
               cursor: "pointer"
             }}
           >
-            <Button onClick={handleAddUser} color="inherit">Agregar</Button>
+            <Button onClick={handleUser} color="inherit">{titleButton}</Button>
           </Grid>
         </Grid>
       </Grid>

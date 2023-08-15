@@ -11,6 +11,9 @@ export const useAddUser = () => {
     return useMutation(addUser, {
         onSuccess: () =>{
             queryClient.invalidateQueries("users")
-        } 
+        },
+        onError: (error) =>{
+            console.log(error)
+        }
     })
 }

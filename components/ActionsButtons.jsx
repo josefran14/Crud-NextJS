@@ -20,6 +20,10 @@ export const ActionsButtons = ({id}) => {
     router.push(`/users/${id}`)
   }
 
+  const handleNavigateToPageEditUser = () =>{
+    router.push(`/user/${id}/edit`)
+  }
+
   return (
     <Box sx={{display: "flex", justifyContent: "center", gap: "14px"}}>
         <Button onClick={handleDelete} variant="contained" color="error" sx={{borderRadius: "12px"}}>
@@ -28,7 +32,7 @@ export const ActionsButtons = ({id}) => {
         <Button onClick={handleNavigateToPageOfDetails} variant="contained" color="secondary" sx={{borderRadius: "12px"}}>
             <VisibilityIcon/>
         </Button>
-        <Button variant="contained" color="info" sx={{borderRadius: "12px"}}>
+        <Button onClick={handleNavigateToPageEditUser} variant="contained" color="info" sx={{borderRadius: "12px"}}>
             <EditIcon/>
         </Button>
     </Box>
