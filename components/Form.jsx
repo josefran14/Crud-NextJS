@@ -2,6 +2,7 @@
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export const Form = ({title, titleButton, initialValue, onSubmit}) => {
 
