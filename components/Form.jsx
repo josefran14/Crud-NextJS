@@ -1,10 +1,10 @@
 "use client"
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-export const Form = ({title, titleButton, initialValue, onSubmit}) => {
+export const Form = ({title, titleButton, initialValue, handleSend}) => {
 
     const router = useRouter()
 
@@ -24,9 +24,13 @@ export const Form = ({title, titleButton, initialValue, onSubmit}) => {
         })
     }
 
-    const handleUser = () =>{
-      onSubmit(user)
+    const handleSubmit = () =>{
+      handleSend(user)
       router.push("/")
+}
+
+const handleBack = () =>{
+  router.back()
 }
 
   return (
@@ -47,9 +51,14 @@ export const Form = ({title, titleButton, initialValue, onSubmit}) => {
           width: { sm: 450 },
         }}
       >
-        <Typography variant="h5" sx={{ textAlign: "center", fontFamily: "Open Sans" }}>
+        <Box sx={{width: "65%", display: "flex", justifyContent: "space-between"}}>
+          <Button onClick={handleBack} sx={{ display: "flex", flexDirection: "column", padding: 0}}>
+            <ArrowBackIcon color="error" sx={{alignSelf: "self-start"}}/>
+          </Button>
+        <Typography variant="h5" sx={{ textAlign: "center" }}>
           {title}
         </Typography>
+        </Box>
         <Grid container>
           <Grid item sx={{ mt: 2, width: "100%" }}>
             <TextField
@@ -122,7 +131,7 @@ export const Form = ({title, titleButton, initialValue, onSubmit}) => {
               cursor: "pointer"
             }}
           >
-            <Button onClick={handleUser} color="inherit">{titleButton}</Button>
+            <Button onClick={handleSubmit} color="inherit">{titleButton}</Button>
           </Grid>
         </Grid>
       </Grid>

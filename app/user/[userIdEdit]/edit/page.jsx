@@ -31,7 +31,7 @@ const page = ({params}) => {
     const {data} = userDetails
 
   return (
-    <Form title="Edit User" titleButton="Edit" initialValue={data} onSubmit={handleEditUser}/>
+    <Form title="Edit User" titleButton="Edit" initialValue={data} handleSend={handleEditUser}/>
   )
 }
 

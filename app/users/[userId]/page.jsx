@@ -23,9 +23,6 @@ const page = ({ params }) => {
 
   return (
     <>
-    <Typography variant="h6" sx={{fontFamily: "Open Sans", color: "white", textAlign: "center"}}>
-      User Details
-    </Typography>
     <UserCard data={data}/>
     </>
   );

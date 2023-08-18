@@ -19,7 +19,7 @@ const page = () => {
 
   return (
     <>
-      <Typography variant="h5" sx={{textAlign: "center", color: "white", fontFamily: "Open Sans"}}>
+      <Typography variant="h5" sx={{textAlign: "center", color: "white"}}>
         Crud With NextJS
       </Typography>
 

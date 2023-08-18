@@ -11,7 +11,7 @@ const page = () => {
     }
 
   return (
-    <Form title="Add User" titleButton="Add" initialValue={{}} onSubmit={handleAddUser}/>
+    <Form title="Add User" titleButton="Add" initialValue={{}} handleSend={handleAddUser}/>
   )
 }
 
