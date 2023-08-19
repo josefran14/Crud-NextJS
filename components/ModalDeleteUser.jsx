@@ -6,8 +6,6 @@ export const ModalDeleteUser = ({ modal, handleCloseModal, userId}) => {
 
     const {mutate: deleteUser} = useDeleteUser()
 
-    const {data: user} = useGetUserDetails(userId)
-
     const handleDelete = () =>{
         deleteUser(userId)
         handleCloseModal()
@@ -19,10 +17,11 @@ export const ModalDeleteUser = ({ modal, handleCloseModal, userId}) => {
       left: "50%",
       transform: "translate(-50%, -50%)",
       width: 400,
-      bgcolor: "background.paper",
-      border: "2px solid #000",
+      bgcolor: "#333",
+      color: "white",
       boxShadow: 24,
       p: 4,
+      borderRadius: "20px"
     };
   
     return (
@@ -44,7 +43,7 @@ export const ModalDeleteUser = ({ modal, handleCloseModal, userId}) => {
                 }}
               >
                 <Typography>
-                  ¿Estas seguro que deseas eliminar el usuario {user?.data.name}?
+                  ¿Estas seguro que deseas eliminar este usuario?
                 </Typography>
                 <Box
                   sx={{
@@ -58,6 +57,7 @@ export const ModalDeleteUser = ({ modal, handleCloseModal, userId}) => {
                     color="error"
                     variant="contained"
                     onClick={handleDelete}
+                    sx={{borderRadius: "12px"}}
                   >
                     Si
                   </Button>
@@ -65,6 +65,7 @@ export const ModalDeleteUser = ({ modal, handleCloseModal, userId}) => {
                     color="primary"
                     variant="contained"
                     onClick={handleCloseModal}
+                    sx={{borderRadius: "12px"}}
                   >
                     No
                   </Button>
