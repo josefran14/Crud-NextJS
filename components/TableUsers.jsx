@@ -1,7 +1,7 @@
 import { Table, TableCell, TableContainer, TableHead, TableRow, TableBody } from "@mui/material"
 import { ActionsButtons } from "./ActionsButtons";
 
-export const TableUsers = ({data}) => {
+export const TableUsers = ({data, handleOpenModal}) => {
   return (
     <>
       <TableContainer sx={{ width: "100%", marginTop: "12px" }}>
@@ -53,7 +53,7 @@ export const TableUsers = ({data}) => {
                     {website}
                   </TableCell>
                   <TableCell sx={{ color: "white" }} align="center">
-                    <ActionsButtons id={id}/>
+                    <ActionsButtons id={id} handleOpenModal={handleOpenModal}/>
                   </TableCell>
                 </TableRow>
               )

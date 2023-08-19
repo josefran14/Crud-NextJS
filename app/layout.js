@@ -15,6 +15,9 @@ const queryClient = new QueryClient()
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <title>Crud With NextJS</title>
+      </head>
       <body>
           <QueryClientProvider client={queryClient}>
             {children}
