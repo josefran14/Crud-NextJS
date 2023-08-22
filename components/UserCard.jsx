@@ -41,6 +41,7 @@ export const UserCard = ({ data }) => {
           borderRadius: "26px",
           background: "#333",
           color: "white",
+          padding: "20px"
         }}
       >
         <Box

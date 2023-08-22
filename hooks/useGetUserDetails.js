@@ -9,18 +9,25 @@ export const useGetUserDetails = (userId) => {
 
   const queryClient = useQueryClient();
 
-  return useQuery(["users", userId], getUser, {
-    initialData: () => {
-      const user = queryClient
-        ?.getQueryData("users")
-        ?.data?.find((user) => user.id === parseInt(userId));
-      if (user) {
-        return {
-          data: user,
-        };
-      } else {
-        return undefined;
-      }
-    },
-  });
+  return useQuery(["users", userId], getUser)
+
+
 };
+
+// De esta manera podemos tener precargado el detalle del usuario 
+//y evitarnos un Loading y asi mostrar una mejor experiencia de usuario
+
+//   return useQuery(["users", userId], getUser, {
+//     initialData: () => {
+//       const user = queryClient
+//         ?.getQueryData("users")
+//         ?.data?.find((user) => user.id === parseInt(userId));
+//       if (user) {
+//         return {
+//           data: user,
+//         };
+//       } else {
+//         return undefined;
+//       }
+//     },
+//   });

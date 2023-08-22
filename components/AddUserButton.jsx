@@ -9,6 +9,7 @@ export const AddUserButton = () => {
   const router = useRouter()
 
   const handleNavigateToPageAddUser = () =>{
+    console.log("navigate")
     router.push("/adduser")
   }
 

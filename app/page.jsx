@@ -2,6 +2,8 @@
 import { AddUserButton } from "@/components/AddUserButton"
 import { ModalDeleteUser } from "@/components/ModalDeleteUser"
 import { TableUsers } from "@/components/TableUsers"
+import { Error } from "@/components/UI/Error"
+import { Loading } from "@/components/UI/Loading"
 import { useGetUsers } from "@/hooks/useGetUsers"
 import { useModalDelete } from "@/hooks/useModalDelete"
 import { Typography } from "@mui/material"
@@ -14,16 +16,16 @@ const page = () => {
   const {modal, handleOpenModal, handleCloseModal, userId} = useModalDelete()
 
   if(isLoading){
-    return <Typography variant="h6" sx={{color: "white", textAlign: "center"}}>Loading...</Typography>
+    return <Loading/>
   }
 
   if(isError){
-    return <Typography variant="h6">{error.message}</Typography>
+    return <Error error={error}/>
   }
 
   return (
     <>
-      <Typography variant="h5" sx={{textAlign: "center", color: "white"}}>
+      <Typography variant="h5" sx={{textAlign: "center", color: "white", marginTop: "30px"}}>
         Crud Of Francisco Saavedra
       </Typography>
 

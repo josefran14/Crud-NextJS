@@ -1,38 +1,48 @@
-"use client"
-import { Form } from "@/components/Form"
-import { useEditUser } from "@/hooks/useEditUser"
-import { useGetUserDetails } from "@/hooks/useGetUserDetails"
-import { Typography } from "@mui/material"
+"use client";
+import { Form } from "@/components/Form";
+import { Error } from "@/components/UI/Error";
+import { Loading } from "@/components/UI/Loading";
+import { useEditUser } from "@/hooks/useEditUser";
+import { useGetUserDetails } from "@/hooks/useGetUserDetails";
 
-const page = ({params}) => {
+const page = ({ params }) => {
+  const { userIdEdit } = params;
 
-    const {userIdEdit} = params
+  const id = Number(userIdEdit);
 
-    const id = Number(userIdEdit)
+  const {
+    data: userDetails,
+    error,
+    isError,
+    isLoading,
+  } = useGetUserDetails(id);
+  const { mutate: editUser } = useEditUser();
 
-    const {data: userDetails, error, isError, isLoading} = useGetUserDetails(id)
-    const {mutate: editUser} = useEditUser()
+  const handleEditUser = (editDataUser) => {
+    editUser({
+      id,
+      ...editDataUser,
+    });
+  };
 
-    const handleEditUser = (editDataUser) =>{
-        editUser({
-            id,
-            ...editDataUser
-        })
-    }
+  if(isLoading){
+    return <Loading/>
+  }
+  
+  if(isError){
+    return <Error error={error}/>
+  }
 
-    if(isLoading){
-        return <Typography variant="h6" sx={{color: "white", textAlign: "center"}}>Loading...</Typography>
-    }
-    
-    if(isError){
-        return <Typography variant="h6">{error.message}</Typography>
-    }
-
-    const {data} = userDetails
+   const { data } = userDetails;
 
   return (
-    <Form title="Edit User" titleButton="Edit" initialValue={data} handleSend={handleEditUser}/>
-  )
-}
+    <Form
+      title="Edit User"
+      titleButton="Edit"
+      initialValue={data}
+      handleSend={handleEditUser}
+    />
+  );
+};
 
-export default page
+export default page;

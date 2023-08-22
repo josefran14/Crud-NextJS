@@ -4,17 +4,17 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import { useRouter } from "next/navigation";
-import { useDeleteUser } from "@/hooks/useDeleteUser";
 
 export const ActionsButtons = ({id, handleOpenModal}) => {
 
   const router = useRouter()
 
-  const handleNavigateToPageOfDetails = () =>{
+  const handleNavigateToPageOfDetails = (id) =>{
     router.push(`/users/${id}`)
   }
 
   const handleNavigateToPageEditUser = () =>{
+    console.log("navigate edit")
     router.push(`/user/${id}/edit`)
   }
 
@@ -23,10 +23,10 @@ export const ActionsButtons = ({id, handleOpenModal}) => {
         <Button onClick={() => handleOpenModal(id)} variant="contained" color="error" sx={{borderRadius: "12px"}}>
             <DeleteIcon/>
         </Button>
-        <Button onClick={handleNavigateToPageOfDetails} variant="contained" color="secondary" sx={{borderRadius: "12px"}}>
+        <Button onClick={() => handleNavigateToPageOfDetails(id)} variant="contained" color="secondary" sx={{borderRadius: "12px"}}>
             <VisibilityIcon/>
         </Button>
-        <Button onClick={handleNavigateToPageEditUser} variant="contained" color="info" sx={{borderRadius: "12px"}}>
+        <Button onClick={() => handleNavigateToPageEditUser(id)} variant="contained" color="info" sx={{borderRadius: "12px"}}>
             <EditIcon/>
         </Button>
     </Box>

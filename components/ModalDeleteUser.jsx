@@ -5,6 +5,7 @@ import { Box, Button, Modal, Typography } from "@mui/material";
 export const ModalDeleteUser = ({ modal, handleCloseModal, userId}) => {
 
     const {mutate: deleteUser} = useDeleteUser()
+    const {data} = useGetUserDetails(userId)
 
     const handleDelete = () =>{
         deleteUser(userId)
@@ -16,7 +17,7 @@ export const ModalDeleteUser = ({ modal, handleCloseModal, userId}) => {
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
-      width: 400,
+      minWidth: 450,
       bgcolor: "#333",
       color: "white",
       boxShadow: 24,
@@ -43,7 +44,7 @@ export const ModalDeleteUser = ({ modal, handleCloseModal, userId}) => {
                 }}
               >
                 <Typography>
-                  ¿Estas seguro que deseas eliminar este usuario?
+                  ¿Estas seguro que deseas eliminar el usuario {data?.data.name}?
                 </Typography>
                 <Box
                   sx={{
