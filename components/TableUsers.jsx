@@ -1,10 +1,10 @@
-import { Table, TableCell, TableContainer, TableHead, TableRow, TableBody } from "@mui/material"
+import { Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Box } from "@mui/material"
 import { ActionsButtons } from "./ActionsButtons";
 
 export const TableUsers = ({data, handleOpenModal}) => {
   return (
-    <>
-      <TableContainer sx={{ width: "100%", marginTop: "12px" }}>
+    <Box sx={{display: "flex", justifyContent: "center"}}>
+      <TableContainer sx={{ width: "80%", marginTop: "12px" }}>
         <Table size="small">
           <TableHead sx={{ width: "80%" }}>
             <TableRow>
@@ -61,6 +61,6 @@ export const TableUsers = ({data, handleOpenModal}) => {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </Box>
   );
 };
