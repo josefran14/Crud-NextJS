@@ -18,7 +18,7 @@ export const useEditUser = () => {
             queryClient.invalidateQueries("users")
         },
         onError: (error) =>{
-            console.log(error)
+            console.log("error edit", error)
         }
       })
 }

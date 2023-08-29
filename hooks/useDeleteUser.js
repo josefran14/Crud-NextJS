@@ -13,7 +13,7 @@ export const useDeleteUser = () => {
             queryClient.invalidateQueries("users")
         },
         onError: (error) =>{
-            console.log(error)
+            console.log("delete error", error)
         }
     })
 }
