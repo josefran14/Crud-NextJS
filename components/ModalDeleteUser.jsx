@@ -1,11 +1,12 @@
 import { useDeleteUser } from "@/hooks/useDeleteUser";
 import { useGetUserDetails } from "@/hooks/useGetUserDetails";
 import { Box, Button, Modal, Typography } from "@mui/material";
+import { Error } from "./UI/Error";
+import { Loading } from "./UI/Loading";
 
 export const ModalDeleteUser = ({ modal, handleCloseModal, userId}) => {
 
     const {mutate: deleteUser} = useDeleteUser()
-    const {data} = useGetUserDetails(userId)
 
     const handleDelete = () =>{
         deleteUser(userId)
@@ -44,7 +45,7 @@ export const ModalDeleteUser = ({ modal, handleCloseModal, userId}) => {
                 }}
               >
                 <Typography>
-                  ¿Estas seguro que deseas eliminar el usuario {data?.data.name}?
+                  ¿Estas seguro que deseas eliminar el usuario?
                 </Typography>
                 <Box
                   sx={{
