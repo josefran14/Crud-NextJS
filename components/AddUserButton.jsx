@@ -18,7 +18,7 @@ export const AddUserButton = () => {
       sx={{
         display: "flex",
         justifyContent: "flex-end",
-        width: "82%"
+        width: "89.5%"
       }}
     >
       <Button onClick={handleNavigateToPageAddUser} variant="contained" color="success" sx={{ borderRadius: "12px" }}>

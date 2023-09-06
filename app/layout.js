@@ -2,13 +2,7 @@
 import './globals.css'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import {ReactQueryDevtools} from "react-query/devtools"
- 
-// const roboto = Roboto({
-//   weight: ['400', '700'],
-//   style: ['normal', 'italic'],
-//   subsets: ['latin'],
-//   display: 'swap',
-// })
+import { IconHome } from '@/components/IconHome'
 
 const queryClient = new QueryClient()
 
@@ -20,6 +14,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
           <QueryClientProvider client={queryClient}>
+            <IconHome/>
             {children}
             <ReactQueryDevtools initialIsOpen={false} position="bottom-right"/>
           </QueryClientProvider>

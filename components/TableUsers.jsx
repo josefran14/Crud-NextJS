@@ -5,7 +5,7 @@ import { ModalDeleteUser } from "./ModalDeleteUser";
 export const TableUsers = ({data, handleOpenModal}) => {
   return (
     <Box sx={{display: "flex", justifyContent: "center"}}>
-      <TableContainer sx={{ width: "80%", marginTop: "12px" }}>
+      <TableContainer sx={{ width: "100%", marginTop: "12px" }}>
         <Table size="small">
           <TableHead sx={{ width: "80%" }}>
             <TableRow>

@@ -1,41 +1,54 @@
-"use client";
-import { AddUserButton } from "@/components/AddUserButton";
-import { ModalDeleteUser } from "@/components/ModalDeleteUser";
-import { TableUsers } from "@/components/TableUsers";
-import { Error } from "@/components/UI/Error";
-import { Loading } from "@/components/UI/Loading";
-import { useGetUsers } from "@/hooks/useGetUsers";
-import { useModalDelete } from "@/hooks/useModalDelete";
-import { Typography } from "@mui/material";
+"use client"
+import { Box, Button, Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 const page = () => {
-  const { data, error, isError, isLoading } = useGetUsers();
+  const router = useRouter();
 
-  const { modal, handleOpenModal, handleCloseModal, userId } = useModalDelete();
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (isError) {
-    return <Error error={error} />;
-  }
+  const handleNavigateToPageOfUsers = () => {
+    router.push("/users");
+  };
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "90vh",
+        flexDirection: "column",
+        gap: "2px",
+      }}
+    >
       <Typography
-        variant="h5"
-        sx={{ textAlign: "center", color: "white", marginTop: "30px" }}
+        sx={{
+          marginTop: "-50px",
+          fontSize: "4vw",
+          color: "grey",
+          fontWeight: "600",
+        }}
       >
-        Crud Of Francisco Saavedra
+        Crud with Next JS
       </Typography>
-
-      <AddUserButton />
-
-      <ModalDeleteUser modal={modal} handleCloseModal={handleCloseModal} userId={userId}/>
-
-      <TableUsers data={data} handleOpenModal={handleOpenModal}/>
-    </>
+      <Typography
+        sx={{
+          color: "#0962CA",
+          fontSize: "3vw",
+          fontWeight: "600",
+          marginBottom: "20px",
+        }}
+      >
+        by Francisco Saavedra
+      </Typography>
+      <Button
+        variant="contained"
+        color="secondary"
+        sx={{ borderRadius: "12px" }}
+        onClick={handleNavigateToPageOfUsers}
+      >
+        View users table
+      </Button>
+    </Box>
   );
 };
 

@@ -1,39 +1,36 @@
-"use client"
+"use client";
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-export const Form = ({title, titleButton, initialValue, handleSend}) => {
+export const Form = ({ title, titleButton, initialValue, handleSend }) => {
+  const router = useRouter();
 
-    const router = useRouter()
+  const [user, setUser] = useState({
+    name: initialValue.name || "",
+    city: initialValue.city || "",
+    email: initialValue.email || "",
+    username: initialValue.username || "",
+    website: initialValue.website || "",
+  });
 
-    const [user, setUser] = useState({
-      name: initialValue.name || "",
-      city: initialValue.city || "",
-      email: initialValue.email || "",
-      username: initialValue.username || "",
-      website: initialValue.website || ""
-  })
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser({
+      ...user,
+      [name]: value,
+    });
+  };
 
-    const handleChange = (e) =>{
-        const {name, value} = e.target
-        setUser({
-            ...user,
-            [name] : value
-        })
-    }
+  const handleSubmit = () => {
+    handleSend(user);
+    router.push("/users");
+  };
 
-    const handleSubmit = () =>{
-      handleSend(user)
-      router.push("/")
-}
-
-const handleBack = () =>{
-  router.back()
-}
-
-
+  const handleBack = () => {
+    router.back();
+  };
 
   return (
     <Grid
@@ -42,7 +39,7 @@ const handleBack = () =>{
       direction="column"
       alignItems="center"
       justifyContent="center"
-      sx={{ minHeight: "100vh", padding: 4 }}
+      sx={{ minHeight: "90vh", padding: 4 }}
     >
       <Grid
         item
@@ -53,13 +50,22 @@ const handleBack = () =>{
           width: { sm: 450 },
         }}
       >
-        <Box sx={{width: "65%", display: "flex", justifyContent: "space-between"}}>
-          <Button onClick={handleBack} sx={{ display: "flex", flexDirection: "column", padding: 0}}>
-            <ArrowBackIcon color="error" sx={{alignSelf: "self-start"}}/>
+        <Box
+          sx={{
+            width: "65%",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Button
+            onClick={handleBack}
+            sx={{ display: "flex", flexDirection: "column", padding: 0 }}
+          >
+            <ArrowBackIcon color="error" sx={{ alignSelf: "self-start" }} />
           </Button>
-        <Typography variant="h5" sx={{ textAlign: "center" }}>
-          {title}
-        </Typography>
+          <Typography variant="h5" sx={{ textAlign: "center" }}>
+            {title}
+          </Typography>
         </Box>
         <Grid container>
           <Grid item sx={{ mt: 2, width: "100%" }}>
@@ -130,13 +136,15 @@ const handleBack = () =>{
               background: "#262254",
               color: "white",
               marginTop: "20px",
-              cursor: "pointer"
+              cursor: "pointer",
             }}
           >
-            <Button onClick={handleSubmit} color="inherit">{titleButton}</Button>
+            <Button onClick={handleSubmit} color="inherit">
+              {titleButton}
+            </Button>
           </Grid>
         </Grid>
       </Grid>
     </Grid>
-  )
-}
+  );
+};
