@@ -1,6 +1,5 @@
 import { Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Box } from "@mui/material"
 import { ActionsButtons } from "./ActionsButtons";
-import { ModalDeleteUser } from "./ModalDeleteUser";
 
 export const TableUsers = ({data, handleOpenModal}) => {
   return (

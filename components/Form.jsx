@@ -1,32 +1,43 @@
 "use client";
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
+import {yupResolver} from "@hookform/resolvers/yup"
+import * as yup from "yup"
+
+const schema = yup.object({
+    name: yup.string().required("Name is required"),
+    city: yup.string().required("Gender is required"),
+    email: yup.string().email("Email format is not valid").required("Email is required"),
+    username: yup.string().required("Username is required"),
+    website: yup.string().required("Website is required"),
+})
 
 export const Form = ({ title, titleButton, initialValue, handleSend }) => {
+
   const router = useRouter();
 
-  const [user, setUser] = useState({
+  const form = useForm({
+    defaultValues: {
     name: initialValue.name || "",
     city: initialValue.city || "",
     email: initialValue.email || "",
     username: initialValue.username || "",
     website: initialValue.website || "",
-  });
+    },
+    resolver: yupResolver(schema),
+    mode: "onTouched"
+  })
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser({
-      ...user,
-      [name]: value,
-    });
-  };
+  const {register, handleSubmit, formState, control } = form
+  const {errors, isValid} = formState
 
-  const handleSubmit = () => {
-    handleSend(user);
-    router.push("/users");
-  };
+    const onSubmit = (data) =>{
+      handleSend(data)
+      router.push("/users")
+    }
 
   const handleBack = () => {
     router.back();
@@ -67,16 +78,17 @@ export const Form = ({ title, titleButton, initialValue, handleSend }) => {
             {title}
           </Typography>
         </Box>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Grid container>
           <Grid item sx={{ mt: 2, width: "100%" }}>
             <TextField
               label="Name"
               type="text"
-              placeholder="enter your name"
+              placeholder="Enter your name"
               fullWidth
-              name="name"
-              value={user.name}
-              onChange={handleChange}
+              error={!!errors.name}
+              helperText={errors.name?.message}
+              {...register("name")}
             />
           </Grid>
 
@@ -84,11 +96,11 @@ export const Form = ({ title, titleButton, initialValue, handleSend }) => {
             <TextField
               label="Gender"
               type="text"
-              placeholder="enter your gender"
+              placeholder="Enter your gender"
               fullWidth
-              name="city"
-              value={user.city}
-              onChange={handleChange}
+              error={!!errors.city}
+              helperText={errors.city?.message}
+              {...register("city")}
             />
           </Grid>
 
@@ -96,11 +108,11 @@ export const Form = ({ title, titleButton, initialValue, handleSend }) => {
             <TextField
               label="Email"
               type="email"
-              placeholder="enter your email"
+              placeholder="Enter your email"
               fullWidth
-              name="email"
-              value={user.email}
-              onChange={handleChange}
+              error={!!errors.email}
+              helperText={errors.email?.message}
+              {...register("email")}
             />
           </Grid>
 
@@ -108,11 +120,11 @@ export const Form = ({ title, titleButton, initialValue, handleSend }) => {
             <TextField
               label="Username"
               type="text"
-              placeholder="enter your username"
+              placeholder="Enter your username"
               fullWidth
-              name="username"
-              value={user.username}
-              onChange={handleChange}
+              error={!!errors.username}
+              helperText={errors.username?.message}
+              {...register("username")}
             />
           </Grid>
 
@@ -120,11 +132,11 @@ export const Form = ({ title, titleButton, initialValue, handleSend }) => {
             <TextField
               label="Website"
               type="text"
-              placeholder="enter your Website"
+              placeholder="Enter your Website"
               fullWidth
-              name="website"
-              value={user.website}
-              onChange={handleChange}
+              error={!!errors.website}
+              helperText={errors.website?.message}
+              {...register("website")}
             />
           </Grid>
 
@@ -139,12 +151,14 @@ export const Form = ({ title, titleButton, initialValue, handleSend }) => {
               cursor: "pointer",
             }}
           >
-            <Button onClick={handleSubmit} color="inherit">
+            <Button disabled={!isValid} type="submit" color="inherit">
               {titleButton}
             </Button>
           </Grid>
         </Grid>
+        </form>
       </Grid>
+      <DevTool control={control}/>
     </Grid>
   );
 };
